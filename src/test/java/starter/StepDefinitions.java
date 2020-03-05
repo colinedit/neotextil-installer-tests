@@ -8,10 +8,12 @@ import cucumber.api.java.Before;
 import cucumber.api.java.After;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import starter.navigation.Navigate;
 
 public class StepDefinitions {
 
   ChromeDriver driver;
+  Navigate nav;
 
   @Before
   public void i_open_the_installer() {
@@ -23,12 +25,21 @@ public class StepDefinitions {
 
   @When("^I click Next$")
   public void i_click_Next() {
-    System.out.println("helo");
-    try {
-      Thread.sleep(1000);
-    }
-    catch (InterruptedException e) {}
+    nav.click_next();
   }
+
+  @When("^I agree$")
+  public void i_agree() {
+    nav.license_agree();
+  }
+  @When("^I select Photoshop$")
+  public void i_select_photoshop_ver() {
+    nav.select_photoshop_version();
+  }
+@When("^I close$")
+public void i_close() {
+  nav.close();
+}
 
   @After
   public void quit() {
