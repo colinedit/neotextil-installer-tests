@@ -1,11 +1,8 @@
 package starter;
 
-import cucumber.api.java.en.Given;
-import cucumber.api.java.en.Then;
-import cucumber.api.java.en.When;
-import cucumber.api.java.en.And;
-import cucumber.api.java.Before;
 import cucumber.api.java.After;
+import cucumber.api.java.Before;
+import cucumber.api.java.en.When;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import starter.navigation.Navigate;
@@ -18,7 +15,8 @@ public class StepDefinitions {
   @Before
   public void i_open_the_installer() {
     ChromeOptions opts = new ChromeOptions();
-    opts.setBinary("/Volumes/neoTextilSetup/Install neoTextil.app/Contents/MacOS/Install neoTextil");
+    opts.setBinary(
+        "/Volumes/neoTextilSetup/Install neoTextil.app/Contents/MacOS/Install neoTextil");
     System.setProperty("webdriver.chrome.driver", "src/test/resources/webdriver/mac/chromedriver");
     driver = new ChromeDriver(opts);
   }
@@ -32,14 +30,16 @@ public class StepDefinitions {
   public void i_agree() {
     nav.license_agree();
   }
-@When("^I select the Photoshop version \"([^\"]*)\"$")
-public void i_select_the_Photoshop_version(String arg1) {
-  nav.select_photoshop_version(arg1);
-}
-@When("^I close$")
-public void i_close() {
-  nav.close();
-}
+
+  @When("^I select the Photoshop version \"([^\"]*)\"$")
+  public void i_select_the_Photoshop_version(String arg1) {
+    nav.select_photoshop_version(arg1);
+  }
+
+  @When("^I close$")
+  public void i_close() {
+    nav.close();
+  }
 
   @After
   public void quit() {
