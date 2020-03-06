@@ -36,6 +36,11 @@ public class StepDefinitions {
     nav.select_photoshop_version(arg1);
   }
 
+  @When("^I select the language \"([^\"]*)\"$")
+  public void i_select_language(String arg1) {
+    nav.select_language(arg1);
+  }
+
   @When("^I close$")
   public void i_close() {
     nav.close();

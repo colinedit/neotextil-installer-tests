@@ -1,6 +1,7 @@
 package starter.navigation;
 
 import net.serenitybdd.core.pages.PageObject;
+import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.By;
 
 public class Navigate extends PageObject {
@@ -33,5 +34,14 @@ public class Navigate extends PageObject {
         e.printStackTrace();
       }
     }
+  }
+  public void select_language(String lang) {
+    Select dropdown = new Select(find(By.id("language-select")));
+    dropdown.getOptions().stream()
+      .filter(
+          option ->
+          option.getAttribute("value").toLowerCase().contains(lang.toLowerCase()))
+      .findFirst()
+      .ifPresent(option -> dropdown.selectByValue(option.getAttribute("value")));
   }
 }
