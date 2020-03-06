@@ -6,14 +6,18 @@ import cucumber.api.java.en.When;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import starter.navigation.Navigate;
+import starter.volume.Volume;
 
 public class StepDefinitions {
 
   ChromeDriver driver;
   Navigate nav;
+  Volume vol = new Volume();
 
   @Before
   public void i_open_the_installer() {
+    vol.mount(vol.NT_SETUP_PATH);
+
     ChromeOptions opts = new ChromeOptions();
     opts.setBinary(
         "/Volumes/neoTextilSetup/Install neoTextil.app/Contents/MacOS/Install neoTextil");
@@ -49,5 +53,6 @@ public class StepDefinitions {
   @After
   public void quit() {
     driver.quit();
+    vol.unmount(Volume.volumePath);
   }
 }

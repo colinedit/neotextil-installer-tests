@@ -7,9 +7,13 @@ Feature: Installing neoTextil
     When I agree
     When I select the Photoshop version "<Version>"
     When I close
+
+    @InstallCat
     Examples:
       | Lang  | Version |
       | ca-ca | 2020    |
+    Examples:
+      | Lang  | Version |
       | de-de | 2020    |
       | en-en | 2020    |
       | es-es | 2020    |
