@@ -32,10 +32,10 @@ public class StepDefinitions {
   public void i_agree() {
     nav.license_agree();
   }
-  @When("^I select Photoshop$")
-  public void i_select_photoshop_ver() {
-    nav.select_photoshop_version();
-  }
+@When("^I select the Photoshop version \"([^\"]*)\"$")
+public void i_select_the_Photoshop_version(String arg1) {
+  nav.select_photoshop_version(arg1);
+}
 @When("^I close$")
 public void i_close() {
   nav.close();

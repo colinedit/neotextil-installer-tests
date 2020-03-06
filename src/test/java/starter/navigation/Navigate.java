@@ -14,12 +14,12 @@ public class Navigate extends PageObject {
     find(By.id("agreement-checkbox")).click();
     find(By.id("agreement-next-destination")).click();
   }
-  public void select_photoshop_version() {
-    find(By.xpath("/html/body/div[2]/div/div/div/section/div[2]/div[2]/div/span/a")).click();
+  public void select_photoshop_version(String photoshopVersion) {
+    find(By.xpath(".//*[text()[contains(.,\"" + photoshopVersion + "\")]]")).click();
     find(By.id("desination-back-installation")).click();
   }
   public void close() {
-    long frequencyMs = 250;
+    long frequencyMs = 100;
     boolean done = false;
 
     while (!done) {
@@ -28,7 +28,7 @@ public class Navigate extends PageObject {
         done = find(By.id("summary-close"))
           .isPresent();
         // System.out.println("[WAIT] " + frequencyMs + "ms.");
-        frequencyMs *= 1.618;
+        frequencyMs *= 1.1;
       } catch (InterruptedException e) {
         e.printStackTrace();
       }
