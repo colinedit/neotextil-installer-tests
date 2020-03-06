@@ -7,12 +7,14 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import starter.navigation.Navigate;
 import starter.volume.Volume;
+import starter.files.Plugins;
 
 public class StepDefinitions {
 
   ChromeDriver driver;
   Navigate nav;
   Volume vol = new Volume();
+  Plugins plug = new Plugins();
 
   @Before
   public void i_open_the_installer() {
@@ -23,6 +25,12 @@ public class StepDefinitions {
         "/Volumes/neoTextilSetup/Install neoTextil.app/Contents/MacOS/Install neoTextil");
     System.setProperty("webdriver.chrome.driver", "src/test/resources/webdriver/mac/chromedriver");
     driver = new ChromeDriver(opts);
+  }
+
+  @After
+  public void quit() {
+    driver.quit();
+    vol.unmount(Volume.volumePath);
   }
 
   @When("^I click Next$")
@@ -50,9 +58,23 @@ public class StepDefinitions {
     nav.close();
   }
 
-  @After
-  public void quit() {
-    driver.quit();
-    vol.unmount(Volume.volumePath);
+  @When("^the plug-ins are installed \"([^\"]*)\"$")
+  public void the_plug_ins_are_installed(String arg1) {
+    assert plug.currentVersionIsInstalled(arg1);
+  }
+
+  @When("^the previous version is backed up \"([^\"]*)\"$")
+  public void the_previous_version_is_backed_up(String arg1) {
+    assert plug.previousVersionIsBackedUp(arg1);
+  }
+
+  @When("^the panel is installed, with the old panel backed up$")
+  public void the_panel_is_installed_with_the_old_panel_backed_up() {
+    assert plug.panelIsBackedUpAndInstalled();
+  }
+
+  @When("^the user data has been initialized$")
+  public void the_user_data_has_been_initialized() {
+    assert plug.userDataIsInstalled();
   }
 }

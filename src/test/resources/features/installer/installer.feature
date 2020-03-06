@@ -7,6 +7,10 @@ Feature: Installing neoTextil
     When I agree
     When I select the Photoshop version "<Version>"
     When I close
+    When the plug-ins are installed "<Version>"
+    When the previous version is backed up "<Version>"
+    When the panel is installed, with the old panel backed up
+    When the user data has been initialized
 
     @InstallCat
     Examples:
